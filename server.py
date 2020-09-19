@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from requests import get
 
 app = Flask(__name__)
-
+ 
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
