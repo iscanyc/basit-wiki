@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
+
+    <title>Arama sonucu: {{title}}</title>
+</head>
+<body>
+
+<div class="card text-center">
+    <div class="card-body" style="display: flex;justify-content: center;">
+        <form action="/" class="search" method="post">
+
+            <div class="input-group mb-3" style="width: 520px">
+                <input aria-describedby="basic-addon2" aria-label="Recipient's username" class="form-control"
+                       name="word"
+                       placeholder="Python <3"
+                       type="text">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">Araştır</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="card-footer text-muted">
+        Arama sonuçları gösteriliyor: {{title}}
+    </div>
+</div>
+<div class="container">
+    <div class="row ml-5">
+        {% for article in data.pages %}
+        <div class="card mt-4 mr-1 ml-1" style="width: 18rem;">
+            {%if article.thumbnail.url%}
+            <img alt="{{article.id}}" class="card-img-top" src="{{article.thumbnail.url}}">
+            {%endif%}
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{article.title}}
+                </h5>
+                <p class="card-text">
+                    {{article.excerpt | safe or ""}}
+                </p>
+                <a class="btn btn-primary btn-sm active" href="https://tr.wikipedia.org/wiki/{{article.title}}">Wikipedia'da
+                    incele</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>
